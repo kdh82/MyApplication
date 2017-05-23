@@ -24,4 +24,8 @@
     android:layout_height="wrap_content"
     android:text="@string/show_answer_button"
     android:onClick="mShowAnswerBtnClicked"/>
+<TextView
+    android:id="@+id/tw"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
 </LinearLayout>
