@@ -1,10 +1,15 @@
 package kr.or.dgit.geoquiz;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -37,6 +42,19 @@ public class CheatActivity extends AppCompatActivity {
             mShowAnswerTextView.setText(R.string.false_button);
         }
         setAnswerShownResult(true);
+        final Button mShowAnswerBtn = (Button) view;
+        int cx = mShowAnswerBtn.getWidth()/2;
+        int cy = mShowAnswerBtn.getHeight()/2;
+        float radios = mShowAnswerBtn.getWidth();
+        Animator anim = ViewAnimationUtils.createCircularReveal(mShowAnswerBtn, cx, cy, radios, 0);
+        anim.addListener(new AnimatorListenerAdapter() {
+        @Override
+            public void onAnimationEnd(Animator animation){
+            super.onAnimationEnd(animation);
+            mShowAnswerBtn.setVisibility(View.INVISIBLE);
+        }
+        });
+        anim.start();
     }
 
     private void setAnswerShownResult(boolean isAnswerShown) {
